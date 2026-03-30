@@ -14,7 +14,7 @@ Aplikacja nie posiada bazy danych ani pliku konfiguracyjnego — wszystkie dane 
 
 | Scenriusz | Akcja                                                                                                                                      |
 |-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| 1         | Rejestracja 4 sztuk sprzętu: 2 laptopy (*Lenovo ThinkPad E14*, *Dell Latitude 5540*), projektor (*BenQ MX560*), aparat (*Sony Alpha 6400*) |
+| 1         | Rejestracja 6 sztuk sprzętu: 3 laptopy (*Lenovo ThinkPad E14*, *Dell Latitude 5540*, *HP EliteBook 840*), 2 projektory (*BenQ MX560*, *Epson EB-X51*), aparat (*Sony Alpha 6400*) |
 | 2         | Dodanie 3 użytkowników: 2 studentów (*Tomasz Brylski*, *Kacper Zając*) i pracownika (*Agnieszka Dąbrowska*)                                |
 | 3         | Wyświetlenie całego sprzętu z aktualnym statusem                                                                                           |
 | 4         | Poprawne wypożyczenia: student wypożycza laptop (7 dni) i projektor (3 dni), pracownik aparat (14 dni)                                     |

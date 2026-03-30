@@ -15,17 +15,23 @@ ConsoleUI.PrintHeader("1. Rejestracja sprzętu");
 
 var laptop1   = new Laptop("Lenovo ThinkPad E14", "Laptop służbowy", "Lenovo", "Windows 11 Pro", 16);
 var laptop2   = new Laptop("Dell Latitude 5540", "Laptop studencki", "Dell", "Ubuntu 22.04", 8);
+var laptop3   = new Laptop("HP EliteBook 840", "Laptop zapasowy", "HP", "Windows 11 Home", 8);
 var projektor = new Projector("BenQ MX560", "Projektor sali 204", "BenQ", 1024, 4000);
+var projektor2 = new Projector("Epson EB-X51", "Projektor sali 105", "Epson", 1280, 3600);
 var aparat    = new Camera("Sony Alpha 6400", "Aparat bezlusterkowy", "Sony", 24, true);
 
 serwisSprzetu.DodajSprzet(laptop1);
 serwisSprzetu.DodajSprzet(laptop2);
+serwisSprzetu.DodajSprzet(laptop3);
 serwisSprzetu.DodajSprzet(projektor);
+serwisSprzetu.DodajSprzet(projektor2);
 serwisSprzetu.DodajSprzet(aparat);
 
 ConsoleUI.PrintOk("Dodano: Lenovo ThinkPad E14 (Laptop)");
 ConsoleUI.PrintOk("Dodano: Dell Latitude 5540 (Laptop)");
+ConsoleUI.PrintOk("Dodano: HP EliteBook 840 (Laptop)");
 ConsoleUI.PrintOk("Dodano: BenQ MX560 (Projektor)");
+ConsoleUI.PrintOk("Dodano: Epson EB-X51 (Projektor)");
 ConsoleUI.PrintOk("Dodano: Sony Alpha 6400 (Aparat)");
 
 // ── 2. Dodanie użytkowników ───────────────────────────────────
