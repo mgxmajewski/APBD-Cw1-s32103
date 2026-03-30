@@ -11,14 +11,15 @@ public class RentalService
 
     public Rental Wypozycz(User uzytkownik, Equipment sprzet, int liczbaDni, DateTime? dataWypozyczenia = null)
     {
+        if (liczbaDni <= 0)
+            throw new NieprawidłowaLiczbaDniException(liczbaDni);
+
         if (sprzet.AvailabilityStatus != AvailabilityStatus.Available)
-            throw new InvalidOperationException(
-                $"Sprzęt '{sprzet.Name}' nie jest dostępny do wypożyczenia (status: {sprzet.AvailabilityStatus}).");
+            throw new SprzętNiedostępnyException(sprzet.Name, sprzet.AvailabilityStatus);
 
         int aktywne = _rentalRepo.GetActiveByUser(uzytkownik).Count();
         if (aktywne >= uzytkownik.MaxActiveRentals)
-            throw new InvalidOperationException(
-                $"{uzytkownik.FullName} osiągnął limit {uzytkownik.MaxActiveRentals} aktywnych wypożyczeń.");
+            throw new LimitWypożyczeńPrzekroczonyException(uzytkownik.FullName, uzytkownik.MaxActiveRentals);
 
         var wypozyczenie = new Rental(uzytkownik, sprzet, dataWypozyczenia ?? DateTime.Now, liczbaDni);
         sprzet.AvailabilityStatus = AvailabilityStatus.Rented;
@@ -33,9 +34,13 @@ public class RentalService
             ?? throw new InvalidOperationException($"Nie znaleziono wypożyczenia o ID {idWypozyczenia}.");
 
         if (!wypozyczenie.IsActive)
-            throw new InvalidOperationException("To wypożyczenie zostało już wcześniej zwrócone.");
+            throw new WypożyczenieJużZwróconeException();
 
-        wypozyczenie.Return(dataZwrotu ?? DateTime.Now);
+        var dataZwrotuFinal = dataZwrotu ?? DateTime.Now;
+        if (dataZwrotuFinal < wypozyczenie.RentedAt)
+            throw new NieprawidłowaDataZwrotuException(dataZwrotuFinal, wypozyczenie.RentedAt);
+
+        wypozyczenie.Return(dataZwrotuFinal);
         wypozyczenie.Equipment.AvailabilityStatus = AvailabilityStatus.Available;
 
         return wypozyczenie;

@@ -67,7 +67,7 @@ try
 {
     serwisWypozyczen.Wypozycz(student1, laptop2, 5);
 }
-catch (InvalidOperationException ex)
+catch (LimitWypożyczeńPrzekroczonyException ex)
 {
     ConsoleUI.PrintBlad($"Przekroczony limit: {ex.Message}");
 }
@@ -80,9 +80,39 @@ try
 {
     serwisWypozyczen.Wypozycz(student2, laptop2, 3);
 }
-catch (InvalidOperationException ex)
+catch (SprzętNiedostępnyException ex)
 {
     ConsoleUI.PrintBlad($"Niedostępny sprzęt: {ex.Message}");
+}
+
+// 5c. Próba oznaczenia już niedostępnego sprzętu
+try
+{
+    serwisSprzetu.OznaczJakoNiedostepny(laptop2.Id);
+}
+catch (SprzętJużNiedostępnyException ex)
+{
+    ConsoleUI.PrintBlad($"Duplikat statusu: {ex.Message}");
+}
+
+// 5d. Nieprawidłowa liczba dni wypożyczenia
+try
+{
+    serwisWypozyczen.Wypozycz(student2, projektor, -1);
+}
+catch (NieprawidłowaLiczbaDniException ex)
+{
+    ConsoleUI.PrintBlad($"Błędne dane: {ex.Message}");
+}
+
+// 5e. Data zwrotu wcześniejsza niż data wypożyczenia
+try
+{
+    serwisWypozyczen.Zwroc(wyp2.Id, wyp2.RentedAt.AddDays(-3));
+}
+catch (NieprawidłowaDataZwrotuException ex)
+{
+    ConsoleUI.PrintBlad($"Błędna data: {ex.Message}");
 }
 
 // ── 6. Sprzęt dostępny do wypożyczenia ───────────────────────

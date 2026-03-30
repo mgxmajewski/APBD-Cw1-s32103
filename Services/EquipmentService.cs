@@ -25,8 +25,10 @@ public class EquipmentService
             ?? throw new InvalidOperationException($"Nie znaleziono sprzętu o ID {id}.");
 
         if (sprzet.AvailabilityStatus == AvailabilityStatus.Rented)
-            throw new InvalidOperationException(
-                $"Nie można oznaczyć '{sprzet.Name}' jako niedostępny — sprzęt jest aktualnie wypożyczony.");
+            throw new SprzętWypożyczonyException(sprzet.Name);
+
+        if (sprzet.AvailabilityStatus == AvailabilityStatus.Unavailable)
+            throw new SprzętJużNiedostępnyException(sprzet.Name);
 
         sprzet.AvailabilityStatus = AvailabilityStatus.Unavailable;
         return sprzet;

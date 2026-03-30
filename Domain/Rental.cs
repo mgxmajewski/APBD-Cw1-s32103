@@ -15,6 +15,9 @@ public class Rental
 
     public Rental(User user, Equipment equipment, DateTime rentedAt, int rentalDays)
     {
+        if (rentalDays <= 0)
+            throw new NieprawidłowaLiczbaDniException(rentalDays);
+
         Id = Guid.NewGuid();
         User = user;
         Equipment = equipment;
