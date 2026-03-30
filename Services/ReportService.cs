@@ -17,10 +17,11 @@ public class ReportService
     {
         var sprzety = _equipmentRepo.GetAll();
         var wypozyczenia = _rentalRepo.GetAll();
+        var uzytkownicy = _userRepo.GetAll();
 
         return new RaportSystemu
         {
-            LiczbaUzytkownikow = _userRepo.GetAll().Count,
+            LiczbaUzytkownikow = uzytkownicy.Count,
             LacznieSprzetu = sprzety.Count,
             Dostepnych = sprzety.Count(s => s.AvailabilityStatus == AvailabilityStatus.Available),
             Wypozyczonych = sprzety.Count(s => s.AvailabilityStatus == AvailabilityStatus.Rented),

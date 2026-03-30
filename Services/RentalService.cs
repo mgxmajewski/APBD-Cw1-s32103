@@ -3,12 +3,10 @@ namespace APBD_Cw1_s32103;
 public class RentalService
 {
     private readonly RentalRepository _rentalRepo;
-    private readonly EquipmentRepository _equipmentRepo;
 
-    public RentalService(RentalRepository rentalRepo, EquipmentRepository equipmentRepo)
+    public RentalService(RentalRepository rentalRepo)
     {
         _rentalRepo = rentalRepo;
-        _equipmentRepo = equipmentRepo;
     }
 
     public Rental Wypozycz(User uzytkownik, Equipment sprzet, int liczbaDni, DateTime? dataWypozyczenia = null)

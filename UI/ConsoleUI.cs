@@ -10,12 +10,6 @@ public class ConsoleUI
         Console.WriteLine(new string('=', 60));
     }
 
-    public static void PrintSekcja(string tytul)
-    {
-        Console.WriteLine();
-        Console.WriteLine($"--- {tytul} ---");
-    }
-
     public static void PrintOk(string wiadomosc) =>
         Console.WriteLine($"[OK]  {wiadomosc}");
 
@@ -52,7 +46,7 @@ public class ConsoleUI
         foreach (var w in wypozyczenia)
         {
             string status = w.IsActive
-                ? (w.IsOverdue ? "PRZETERMINOWANE" : "aktywne")
+                ? (w.IsOverdue ? "przeterminowane" : "aktywne")
                 : $"zwrócone {w.ReturnedAt:yyyy-MM-dd}";
 
             string kara = w.Penalty > 0 ? $"  Kara: {w.Penalty:C}" : string.Empty;

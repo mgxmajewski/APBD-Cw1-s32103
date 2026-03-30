@@ -7,7 +7,7 @@ var repoWypozyczen  = new RentalRepository();
 
 var serwisSprzetu    = new EquipmentService(repoSprzetu);
 var serwisUzytk      = new UserService(repoUzytk);
-var serwisWypozyczen = new RentalService(repoWypozyczen, repoSprzetu);
+var serwisWypozyczen = new RentalService(repoWypozyczen);
 var serwisRaportow   = new ReportService(repoSprzetu, repoWypozyczen, repoUzytk);
 
 // ── 1. Dodanie sprzętu ────────────────────────────────────────
