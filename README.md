@@ -10,6 +10,23 @@ Wymagane: .NET 8 SDK lub nowszy.
 dotnet run
 ```
 
+Aplikacja nie posiada bazy danych ani pliku konfiguracyjnego — wszystkie dane są seedowane w pamięci przy starcie (`Program.cs`). Po uruchomieniu automatycznie wykonuje się pełny scenariusz demonstracyjny:
+
+| Scenriusz | Akcja                                                                                                                                      |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| 1         | Rejestracja 4 sztuk sprzętu: 2 laptopy (*Lenovo ThinkPad E14*, *Dell Latitude 5540*), projektor (*BenQ MX560*), aparat (*Sony Alpha 6400*) |
+| 2         | Dodanie 3 użytkowników: 2 studentów (*Tomasz Brylski*, *Kacper Zając*) i pracownika (*Agnieszka Dąbrowska*)                                |
+| 3         | Wyświetlenie całego sprzętu z aktualnym statusem                                                                                           |
+| 4         | Poprawne wypożyczenia: student wypożycza laptop (7 dni) i projektor (3 dni), pracownik aparat (14 dni)                                     |
+| 5         | Próby nieprawidłowych operacji: przekroczenie limitu studenta (2 aktywne) + próba wypożyczenia sprzętu oznaczonego jako niedostępny        |
+| 6         | Wyświetlenie tylko sprzętu dostępnego do wypożyczenia                                                                                      |
+| 7         | Zwrot w terminie (aparat, 2 dni przed terminem) — kara 0 PLN                                                                               |
+| 8         | Zwrot z opóźnieniem (laptop, 5 dni po terminie) — kara 75 PLN                                                                              |
+| 9         | Aktywne wypożyczenia wybranego użytkownika                                                                                                 |
+| 10        | Lista przeterminowanych wypożyczeń                                                                                                         |
+| 11        | Filtrowane widoki: sprzęt niedostępny, sprzęt wypożyczony, przeterminowane wypożyczenia                                                    |
+| 12        | Raport końcowy stanu całej wypożyczalni                                                                                                    |
+
 ## Struktura projektu
 
 ```
@@ -62,8 +79,8 @@ Nieprawidłowe operacje (sprzęt niedostępny, przekroczony limit, próba ponown
 
 ## Reguły biznesowe
 
-| Reguła | Wartość |
-|--------|---------|
-| Maks. aktywnych wypożyczeń — student | 2 |
-| Maks. aktywnych wypożyczeń — pracownik | 5 |
-| Kara za opóźnienie | 15,00 PLN / dobę |
+| Reguła                                 | Wartość          |
+|----------------------------------------|------------------|
+| Maks. aktywnych wypożyczeń — student   | 2                |
+| Maks. aktywnych wypożyczeń — pracownik | 5                |
+| Kara za opóźnienie                     | 15,00 PLN / dobę |
