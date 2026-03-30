@@ -117,6 +117,28 @@ if (przeterminowane.Any())
 else
     ConsoleUI.PrintInfo("Brak przeterminowanych wypożyczeń.");
 
-// ── 11. Raport końcowy ────────────────────────────────────────
+// ── 11. Filtrowane widoki ─────────────────────────────────────
+ConsoleUI.PrintHeader("11. Filtr: sprzęt niedostępny (serwis)");
+var niedostepne = serwisSprzetu.FiltrujPoStatusie(AvailabilityStatus.Unavailable).ToList();
+if (niedostepne.Any())
+    ConsoleUI.PrintListaSprzetu(niedostepne);
+else
+    ConsoleUI.PrintInfo("Brak sprzętu o tym statusie.");
+
+ConsoleUI.PrintHeader("11b. Filtr: sprzęt aktualnie wypożyczony");
+var wypozyczony = serwisSprzetu.FiltrujPoStatusie(AvailabilityStatus.Rented).ToList();
+if (wypozyczony.Any())
+    ConsoleUI.PrintListaSprzetu(wypozyczony);
+else
+    ConsoleUI.PrintInfo("Brak sprzętu o tym statusie.");
+
+ConsoleUI.PrintHeader("11c. Filtr: przeterminowane wypożyczenia");
+var przeterminowane2 = serwisWypozyczen.PobierzPrzeterminowane().ToList();
+if (przeterminowane2.Any())
+    ConsoleUI.PrintListaWypozyczen(przeterminowane2);
+else
+    ConsoleUI.PrintInfo("Brak przeterminowanych wypożyczeń.");
+
+// ── 12. Raport końcowy ────────────────────────────────────────
 var raport = serwisRaportow.GenerujRaport();
 ConsoleUI.PrintRaport(raport);

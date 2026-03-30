@@ -14,7 +14,10 @@ public class EquipmentService
     public IReadOnlyList<Equipment> PobierzWszystkie() => _repo.GetAll();
 
     public IEnumerable<Equipment> PobierzDostepne() =>
-        _repo.GetAll().Where(e => e.AvailabilityStatus == AvailabilityStatus.Available);
+        FiltrujPoStatusie(AvailabilityStatus.Available);
+
+    public IEnumerable<Equipment> FiltrujPoStatusie(AvailabilityStatus status) =>
+        _repo.GetAll().Where(e => e.AvailabilityStatus == status);
 
     public Equipment OznaczJakoNiedostepny(Guid id)
     {
